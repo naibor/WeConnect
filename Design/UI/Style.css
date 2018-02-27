@@ -1,0 +1,22 @@
+#signin 
+{
+	background-color:orange;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+		}
+ 
+#BackgroundImage 
+{
+	background-image: url(Image/town.jpg);
+	background-size: cover;
+		}
+#Form
+{
+	color: white;
+}
