@@ -64,4 +64,6 @@
     font-size: 16px;
 }
 /* styling the heading */
-#myhead{ text-align: center;}
+#myhead{ text-align: center;
+        color:whitesmoke;           
+}
