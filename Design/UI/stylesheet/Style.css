@@ -17,15 +17,12 @@
 /* dashboard background */
 #dash{background-color: grey;
 }
-
-
 /*for the sign in form;the color was too dull */
 #Form{color: white;}
 /*the remember me checkbox was too dull*/
 #RememberMe{color:white;}
 /*so that text inside forms esp lables can pop*/
 #Text{ color:white;}
-
 /*for the input style in the sign up form*/
 #myinput{
     border: 2px solid
@@ -37,8 +34,7 @@
     height:20px;
      }
  /* backgroundcolor */
-#bodycolor{background-color:burlywood;
-}
+#bodycolor{background-color:burlywood;}
 /* for the buttons in sign in */
 #button{
     text-align: center;
@@ -49,19 +45,7 @@
 #myhead{ text-align: center;
         color:black;           
 }
-#listedit{ list-style-type: none;
-
-
-}
-
-
-/*adjusting the nav bar*/
-/* #vertical{ 
-            position: fixed;
-            height: 100%;
-            overflow: auto;
-            display: block;
-         } */
+#listedit{ list-style-type: none;}
 
 #navba{ width:100px;
         background-color: grey;
