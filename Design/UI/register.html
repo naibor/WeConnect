@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+	<title>registration</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width = device-width, initial-scale=1">
+	<!-- bootstrap CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<!-- custom CSS -->
+	<link rel="stylesheet" type="text/css" href="stylesheet/style.css">
+	<!-- font awesome CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+</head>
+
+<body id="bodycolor">
+	<header class="navbar navbar-expand-sm dark bg-secondary bg-faded">
+		<a class="navbar-brand" id="brand" href="#">LetsConnect</a>
+		<nav class="container w-100">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="home.html">Home
+						<span class="sr-only">(current)</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="categories.html">Business categories</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="dashboard.html">Go to dashboard</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	
+	<!-- heading -->
+	<div id="myhead">
+		<!-- add font and change color -->
+		<h2>LETS CONNECT</h2>
+		<p>
+			Lets you connect with your client and competition.Grow your business through feedback.
+		</p>
+	</div>
+	<!-- business registration form  -->
+	    <div id="signin" >
+			<form  action ="#" class="container">
+		        <h4 id="Text">Register your business below </h4>
+		        <br>
+		        <label id="Text" for = "name"><b> Business name :</b></label><br>
+		        <input id="myinput" type = "text" name="name"><br>
+		        <label id="Text" for = "biz"><b>Business location:</b></label><br>
+		        <input id="myinput" type ="text" name="biz"><br>
+		        <label id="Text" for ="email"><b> Email :</b></label><br>
+		        <input id="myinput" type ="email" name "email"><br>
+		        <label id="Text" for= "category"><b> Business category:<b></label><br>
+		            <select id="category" name="Business category">
+		            	<option value="service business">Service Business</option>
+		            	<option value="merchandising business">Merchandising Business</option>
+		            	<option value="manufacturing business">Manufacturing Business</option>
+		            	<option value="hybrid business">Hybrid Business</option>
+		            </select><br><br>
+		        <button type="submit" class="btn btn-sm -primary "> Submit </button><br>
+			</form>
+		</div>
+</body>
+</html>
