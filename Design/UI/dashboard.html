@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+	<title>dashboard</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width = device-width, initial-scale=1">
+	<!-- bootstrap CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<!-- custom CSS -->
+	<link rel="stylesheet" type="text/css" href="stylesheet/style.css">
+	<!-- font awesome CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+</head>
+<body id="dash">
+	<div>
+		<nav class="navbar navbar-toggleable-md navbar-light bg-secondary bg-faded"> <a class="navbar-brand" id="brand" href="#">LetsConnect</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item" class="collapsibleNavbar"><a class="nav-link" href="register.html">Register</a></li>
+					<li class="nav-item" class="collapsibleNavbar" ><a class="nav-link" href="#">Contact Us</a></li><br>
+					<li class="nav-item" class="collapsibleNavbar"><a class="nav-link" href="index.html">Sign Out</a></li><br>
+					<li class="nav-item" class="collapsibleNavbar"><a class="nav-link" href="categories.html">Catalogue</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div><br>
+	<h2 id="myhead">LETS CONNECT</h2>
+<!-- add a column and row -->
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-3">
+					<div class="well">
+						<h3>Profile</h3>
+							<ul>
+								<li id="listedit" id="myhead"><a href="home.html">Home page</a></li>
+								<li id="listedit" id="myhead"><a href="#">settings</a></li>
+								<li id="listedit" id="myhead"><a href="index.html">log out</a></li>
+								<li id="listedit" id="myhead"><a href="#">delete account</a></li>
+							</ul>
+					</div>
+				</div>
+				<div class="col-xl-6">
+					<div class="well">
+						<h3>LISA'S PEPPER </h3>
+						<p>Your safety is your priority.Spray them away.</p>
+					</div>
+					<div>
+						<!-- add an image -->
+						<img src="static/load.jpg">
+					</div>
+				</div>
+				<div class="col-xl-3">
+					<div class="well">
+						<h3>contact details</h3>
+						<ul>
+							<li id="listedit">email:lisapaper.@gmail.com</li>
+							<li id="listedit" >phone number:0707981133</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- your reviews -->
+	<div id="bodycolor">
+		<footer class="well well-md">
+			<div class="form-group">
+				<span class="border border -botton-0">
+					<label for="reviews"> Reviews:</label>
+					<textarea class="form-control" rows="5" id="comment"></textarea>			
+				</span>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>
