@@ -1,26 +1,30 @@
-user_info={}
+user_info = {}
 # where user data is stored
-
-
+business_info = {}
+# where business registrations are stored
+bizID = 0
 class User:
     '''user model'''
     # the class constructor with parameters
     def __init__(self,name,username,email,password):
         self.name = name
-        self.username=username
+        self.username = username
         self.email = email
         self.password = password
+        self.business =[]
 
 
 class Business:
     '''business model'''
-
-    def __init__(self,business_ID,business_name,location,category):
-        self.business_ID = business_ID
-        self.business_name = business_name
-        self.location = location
-        self.category = category
-
+    
+    
+    def __init__(self,bizID,bizname,bizlocation,bizcategory):
+        self.bizID = bizID
+        self.bizname = bizname
+        self.bizlocation = bizlocation
+        self.bizcategory = bizcategory
+        # business_info.append(bizID)
+        
 
 class Review:
     '''review model'''
