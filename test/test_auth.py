@@ -55,7 +55,7 @@ class RegistrationTestCase(TestCase):
         self.assertIn("1", business_info, msg="business not found")
     
 
-    def test_updae_business(self):
+    def test_upda_business(self):
         pass
 
     def test_remove_business(self):

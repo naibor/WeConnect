@@ -7,8 +7,6 @@ def register():
     '''register user'''
     # get post data in form of a dict
     data = request.get_json()
-
-    print(data)
     # new_user is an instance of class User (new_user object) using the value above ie.data
     new_user = User(
         data["name"],
@@ -23,7 +21,6 @@ def register():
         "email":new_user.email,
         "password":new_user.password
     }
-    print(user_info)
 
     response = {"message":"welcome you are now registered"}
 # the make_response function(inbuilt) turns the response in to json format
@@ -32,9 +29,7 @@ def register():
 '''register a business'''
 @app.route('/api/auth/v1/business', methods=['POST'])
 def create_business():
-    data =request.get_json()
-
-    print(data)
+    data = request.get_json()
 
     new_business = Business(
        int(data["bizID"]),
@@ -50,8 +45,7 @@ def create_business():
         "bizcategory": new_business.bizcategory
 
     }
-    print(business_info)
-
+    
     response = "message ""you have registered a business"
 
     return make_response(jsonify(response),201)
