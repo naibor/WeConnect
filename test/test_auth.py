@@ -29,6 +29,8 @@ class RegistrationTestCase(TestCase):
         
 
     def test_login(self):
+        # response =self.test_app.post(
+        #     "/api/vi/auth/ )
         pass
 
     def test_logout(self):

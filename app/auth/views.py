@@ -23,19 +23,12 @@ def register():
         "email":new_user.email,
         "password":new_user.password
     }
-
     print(user_info)
 
     response = {"message":"welcome you are now registered"}
-# this turns the response in to json format
+# the make_response function(inbuilt) turns the response in to json format
     return make_response(jsonify(response), 201)
 
-# user_info[new_user.name]=dict(
-#     name=new_user.name,
-#     username=new_user.email,
-#     email=new_user.email,
-#     password=new_user.password
-# ) this is another way of writting the nested dict
 
 
 
