@@ -1,7 +1,7 @@
 import json
 from unittest import TestCase
 from app import app
-from app.models import User,user_info
+from app.models import User,user_info, Business, business_info
 # we create a tests class that inherits from testcase,the one imported up there
 class RegistrationTestCase(TestCase):
 
@@ -39,10 +39,23 @@ class RegistrationTestCase(TestCase):
     def test_reset_password(self):
         pass
 
-    def test_register_business(self):
-        pass
+    def test_create_business(self):
+        '''ensures registered user can register a business'''
+        response =self.test_app.post(
+            "/api/v1/auth/businesses",
+            data =json.dumps (dict(
+                bizID="1",
+                bizname="lisaP",
+                bizlocation="ngara",
+                bizcategory="service"
+            )),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code,201)
+        self.assertIn("1", business_info, msg="business not found")
+    
 
-    def test_update_business(self):
+    def test_updae_business(self):
         pass
 
     def test_remove_business(self):
