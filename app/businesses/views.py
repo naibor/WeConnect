@@ -2,7 +2,7 @@ from flask import jsonify, request, make_response
 from app.models import user_info, Business, business_info
 from app import app
 
-@app.route('/api/auth/v1/business', methods=['POST'])
+@app.route('/api/v1/business', methods=['POST'])
 def create_business():
     '''register a business'''
     data = request.get_json()

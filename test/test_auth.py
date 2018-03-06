@@ -25,7 +25,7 @@ class RegistrationTestCase(TestCase):
             content_type= "application/json"
         )
         self.assertEqual(response.status_code,201)
-        self.assertIn("Liz", user_info,msg="user not found")
+        self.assertIn("naibor", user_info,msg="user not found")
         
 
     def test_login(self):
@@ -39,39 +39,6 @@ class RegistrationTestCase(TestCase):
     def test_reset_password(self):
         pass
 
-    def test_create_business(self):
-        '''ensures registered user can register a business'''
-        response =self.test_app.post(
-            "/api/v1/auth/businesses",
-            data =json.dumps (dict(
-                bizID="1",
-                bizname="lisaP",
-                bizlocation="ngara",
-                bizcategory="service"
-            )),
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code,201)
-        self.assertIn("1", business_info, msg="business not found")
     
-
-    def test_upda_business(self):
-        pass
-
-    def test_remove_business(self):
-        pass
-        
-    def test_retreave_all_businesses(self):
-        pass
-
-    def test_get_business(self):
-        pass
-
-    def test_add_review(self):
-        pass
-
-    def test_get_all_review(self):
-        pass
-
     def tearDown(self):
         pass
