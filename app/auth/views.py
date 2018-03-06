@@ -13,43 +13,15 @@ def register():
         data["username"],
         data["email"],
         data["password"]
-    )
-# this is where the data will be stored
-    user_info[new_user.name] = {
+        )
+    # this is where the data will be stored
+    user_info[new_user.username] = {
         "name": new_user.name,
         "username": new_user.username,
         "email":new_user.email,
-        "password":new_user.password
-    }
-
-    response = {"message":"welcome you are now registered"}
-# the make_response function(inbuilt) turns the response in to json format
-    return make_response(jsonify(response), 201)
-
-'''register a business'''
-@app.route('/api/auth/v1/business', methods=['POST'])
-def create_business():
-    data = request.get_json()
-
-    new_business = Business(
-       int(data["bizID"]),
-        data["bizname"],
-        data["bizlocation"],
-        data["bizcategory"]
-    )
-
-    business_info[new_business.bizID]={
-        "bizID": new_business.bizID,
-        "bizname": new_business.bizname,
-        "bizlocation":new_business.bizlocation,
-        "bizcategory": new_business.bizcategory
-
+        "password":new_user.password,
+        "business": new_user.business # attach attribute business to user_info
     }
     
-    response = "message ""you have registered a business"
-
-    return make_response(jsonify(response),201)
-
-
-
-
+    response = {"message":"welcome you are now registered"}
+    return make_response(jsonify(response), 201)

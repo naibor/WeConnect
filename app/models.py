@@ -1,4 +1,4 @@
-user_info={}
+user_info = {}
 # where user data is stored
 business_info = {}
 # where business registrations are stored
@@ -11,6 +11,7 @@ class User:
         self.username = username
         self.email = email
         self.password = password
+        self.business =[]
 
 
 class Business:
