@@ -1,5 +1,5 @@
 from flask import jsonify, request, make_response
-from app.models import User, user_info, Business, business_info
+from app.models import User, Business 
 from app import app
 from  flask_jwt_extended import create_access_token
 
@@ -16,7 +16,7 @@ def register():
         data["password"]
         )
     # this is where the data will be stored
-    user_info[new_user.username] = {
+    User.user_info[new_user.username] = {
         "name": new_user.name,
         "username": new_user.username,
         "email":new_user.email,
@@ -24,30 +24,29 @@ def register():
         "business": new_user.business # attach attribute business to user_info
     }
     response = {"message":"welcome you are now registered"}
-    # print (response)
+    
+
     return make_response(jsonify(response), 201) #created
 
 @app.route('/api/v1/auth/login', methods=['POST'])
 def signing_in():
     '''signing in'''
     data = request.get_json()
-    # from the user_info where our users are stored
     if  not request.is_json:
         return jsonify({"msg": "JSON not in request,data validation failed"}), 400 #bad request
-    if user_info:
-        # create a variable username to store the key which is username in the
-        thisusername = data['username']
+    if User.user_info:
+        this_username = data['username']
     # print(thisusername)
         # if the user name is saved in the info proceed to get username
-        if thisusername in user_info:
+        if this_username in User.user_info:
                 # print(thisusername)
             # then assign a variable to the accessed username for the particular user in the user_info
-                user = user_info[thisusername]
+                user = User.user_info[this_username]
                 # print(user)
             # compare the passwords 
                 if user["password"] == data["password"]:
                     # assign token
-                    access_token = create_access_token(identity=thisusername)
+                    access_token = create_access_token(identity=this_username)
                     response = {"message": "successfully logged in", "access_token":access_token }
                     return make_response(jsonify(response), 200) #ok
                 else:
@@ -56,6 +55,8 @@ def signing_in():
         else:
             response = {"message": "user does not exist"}
             return make_response(jsonify(response), 401) #unauthorised
+    response = {"message": "No users exist. Please register."}
+    return make_response(jsonify(response), 401)
         
 
 @app.route('/api/v1/auth/reset-password', methods=['POST'])
