@@ -1,0 +1,19 @@
+
+python:
+  - 3.6
+
+install:
+  - pip install -r requirements/dev.txt
+  - pip install codecov
+
+script:
+  - python -m unittest discover
+  - behave
+  - coverage erase
+  - coverage run test_webapp.py && coverage html
+  - pylint --output-format=text webapp.py
+
+after_success:
+  - codecov
+
+
