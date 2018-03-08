@@ -4,7 +4,7 @@ class Config (object):
     """parent configaration class"""
     DEBUG =False
     CSRF_ENABLE =True #protection from unwanted requests
-    SECRET = os.getenv('SECRET', '') 
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', '23WEASFDwsa') 
     
 
 class DevelopmentConfig(Config):
@@ -24,13 +24,10 @@ class ProductionConfig(Config):
     DEBUG =True
     TESTING = False
 
-
 # app_config dictionary is used for exporting the environment
-
 app_config ={
     'development':DevelopmentConfig,
     'testing':TestingConfg,
     'staging':StagingConfig,
     'production':ProductionConfig,
-
 }

@@ -15,7 +15,7 @@ class BusinessTestCase(TestCase):
         '''ensures registered user can register a business'''
         response = self.test_app.post(
             "/api/v1/business",
-            data=json.dumps(dict(
+            bizdata=json.dumps(dict(
                 bizID="1",
                 bizname="lisaP",
                 bizlocation="ngara",
@@ -27,10 +27,35 @@ class BusinessTestCase(TestCase):
         self.assertIn("1", business_info, msg="business not found")
 
 
-    # def test_update_business(self):
-    #     pass
+    def test_update_business(self):
+        '''a user can update his business information'''
+        response = self.test_app.post(
+            "/api/v1/update_business",
+            data=json.dumps(dict(
+                bizID="1",
+                bizname="lisaP",
+                bizlocation="ngara",
+                bizcategory="service"
+            )),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code,200)
 
-    # def test_remove_business(self):
+
+        # confirm that the information updates by overwriting the previous data
+        # self.assertNotEqual(new_bidata.new_business, business_info.newbizdata)
+
+
+
+    def test_remove_business(self):
+        '''a user can remove a business'''
+        response = self.test_app.delete(
+            "/api/v1/business/1",
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn("bizID", business_info, msg="successfully deleted business")
+
     #     pass
         
     # def test_retreave_all_businesses(self):
