@@ -1,35 +1,35 @@
 import json
 from unittest import TestCase
+from instance.config import app_config
 from app import app
-from app.models import User,user_info, Business, business_info
+from app.models import User, Business, business_info, catalogue
 # we create a tests class that inherits from testcase,the one imported up there
 class RegistrationTestCase(TestCase):
 
     # setsup after every test
     def setUp(self):
+        app.config.from_object(app_config['testing'])
         self.test_app = app.test_client()
-        user_info.clear()
-       
-    def test_register_account(self):
-        '''ensures users are created on the register account'''
-        response =self.test_app.post(
+        self.register_response = self.test_app.post(
             "/api/v1/auth/register",
-            # this tell json to serialize the data
-            data = json.dumps (dict(
+            data=json.dumps(dict(
                 name="Liz",
                 username="naibor",
                 email="lix@gmail.com",
                 password="7896"
             )),
-            # why?i have specified below
-            content_type= "application/json"
+            content_type="application/json"
         )
-        # print(response)
+       
+    def test_register_account(self):
+        '''ensures users are created on the register account'''
+        response = self.register_response
         self.assertEqual(response.status_code,201)
-        self.assertIn("naibor", user_info,msg="user not found")
-        # self.assertEqual("message":"welcome you are now registered", msg=response )
+        self.assertIn("naibor", User.user_info, msg="user not found")
+        self.assertIn("welcome you are now registered", str(response.data)) 
 
     def test_signin(self):
+
         response =self.test_app.post(
             "/api/v1/auth/login",
             data = json.dumps (dict(
@@ -39,30 +39,42 @@ class RegistrationTestCase(TestCase):
             content_type="application/json"
         )
         self.assertEqual(response.status_code, 200)
-        # self.assertIn("naibor", user_info, msg="user not found")
-        # self.assertEqual("7896", user_info["password"])
-        # print("this is the", response)
-        # self.assertEqual(response.status_code, 404)
-        # self.assertNotEqual("5698",user_info["password"], msg="wrong password")
-        # self.assertEqual(response.status_code, 404)
+        # get response data and deserialize
+        response_data = json.loads(response.data)
+        self.assertIn("access_token", response_data)
 
 
-    def test_logout(self):
-        pass
+    # def test_reset_password(self):
+    #     response = self.test_app.post(
+    #         "/api/v1/auth/reset-password",
+    #         data=json.dumps(dict(  # serialilzes this dictionary..
+    #             name="liz",
+    #             username="naibor",
+    #             email="lix@gmail.com",
+    #             password="7896"
+    #         )),
+    #         content_type="application/json"
+    #     )
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertIn("lix@gmail.com", user_info, msg="email not found")
+
+    #     pass
+
+
+    # def test_logout(self):
+    #     response = self.test_app.post(
+    #         "/api/v1/auth/login",
+    #         data=json.dumps(dict(
+    #             username="naibor",
+    #             password="7896"
+    #         )),
+    #         content_type="application/json"
+    #     )
+    #     self.assertEqual(response.status_code, 200)
+
+    #     pass
         
-    def test_reset_password(self):
-        response = self.test_app.post(
-            "/api/v1/auth/reset-password",
-            data=json.dumps(dict( #serialilzes this dictionary..
-                name="liz",
-                username="naibor",
-                email="lix@gmail.com",
-                password="7896"
-            )),
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code,200 )
-        self.assertIn("lix@gmail.com",user_info, msg="email not found")
+   
 
         
         # self.assertEqual(response.status_code,200)
