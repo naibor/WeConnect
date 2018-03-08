@@ -13,14 +13,16 @@ class User:
         self.username = username
         self.email = email
         self.password = password
-        self.business =[]
+        self.business=[]
 
-    def validate_auth_data(self, data):
-        '''a method that validates data from user '''
+    # @staticmethod
 
-        if data :
-            username=data["username"]
-            if username :
+    # def validate_auth_data(self, data):
+    #     '''a method that validates data from user '''
+
+    #     if data :
+    #         username=data["username"]
+    #         if username :
 
         #validate the email
         #validate username
