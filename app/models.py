@@ -8,7 +8,7 @@ bizID = 0
 class User:
     '''user model'''
     # the class constructor with parameters
-    def __init__(self,name,username,email,password ):
+    def __init__(self, name, username, email, password ):
         self.name = name
         self.username = username
         self.email = email
@@ -17,14 +17,18 @@ class User:
 
     def validate_auth_data(self, data):
         '''a method that validates data from user '''
+
+        if data :
+            username=data["username"]
+            if username :
+
+        #validate the email
+        #validate username
+        #validate password
         
-
-
 class Business:
     '''business model'''
-    
-    
-    def __init__(self,bizname,bizlocation,bizcategory, bizowner):
+    def __init__(self, bizname, bizlocation, bizcategory, bizowner):
         self.bizname = bizname
         self.bizlocation = bizlocation
         self.bizcategory = bizcategory
@@ -48,10 +52,17 @@ class Business:
             
         all_businesses.append(new_biz)
 
-    @staticmethod #it has a logical connection but doesnt really depend on the 
+    # @staticmethod #it has a logical connection but doesnt really depend on the 
     # i need to use the get_business_catalogue method but dont need the (self) in my method  below    
-    def get_business_catalogue():
-        pass
+    # def get_business_catalogue():
+    #     next_num = -1
+    #     for item in all_businesses:
+    #         if all_businesses:
+    #             next_num +=1
+    #             catalogue = all_businesses[next_num]["bizname"}
+
+    #         else:
+    #             return "no items"
     
 class Review:
     '''review model'''
