@@ -1,5 +1,5 @@
 business_info = {} # users and their business infos found here
-catalogue =[] #a list of business names
+catalog =[] #a list of business names
 class User:
     '''user model'''
     user_info = {}  # where user data is stored
@@ -64,16 +64,16 @@ class Review:
 def delete(business_ID):
     del business_info[business_ID]
 
-# this is the method to create and returns catalogue .
-def get_business_catalogue():
-    '''a user can get and view business catalogue'''
+# this is the method to create and returns catalog .
+def get_business_catalog():
+    '''a user can get and view business catalog'''
     if business_info:
         for key in business_info:
-            catalogue.append(dict(
+            catalog.append(dict(
                 name=business_info[key]["business_name"],#getting the value of keys from business info
                 category=business_info[key]["business_category"],
                 location=business_info[key]["business_location"]
             ))
-        return catalogue
+        return catalog
     else:
         return "no items"

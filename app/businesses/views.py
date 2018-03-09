@@ -1,5 +1,5 @@
 from flask import jsonify, request, make_response
-from app.models import User, Business, business_info, get_business_catalogue
+from app.models import User, Business, business_info, get_business_catalog
 from app import app
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
@@ -40,8 +40,8 @@ def create_business():
 def get_businesses():
     '''user can get a business'''
     #get business catalogue is a method in models
-    catalogue = get_business_catalogue() 
-    response ={"catalogue":catalogue}
+    catalog = get_business_catalog() 
+    response ={"catalog":catalog}
     return make_response(jsonify(response), 200)
 
 

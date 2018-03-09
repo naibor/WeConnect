@@ -72,8 +72,8 @@ class BusinessTestCase(TestCase):
         response_data=json.loads(response.data)
         self.assertEqual(response.status_code, 200)
         #checks if we have an item in catalogue
-        catalogue=response_data["catalogue"]
-        self.assertTrue(len(catalogue) > 0)
+        catalog = response_data["catalog"]
+        self.assertTrue(len(catalog) > 0)
 
     # def test_update_business(self):
     #     '''a user can update his business information'''
