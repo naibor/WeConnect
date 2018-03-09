@@ -15,6 +15,18 @@ def register():
         data["email"],
         data["password"]
         )
+    # special_character = (" ", '$', ' %', ' & ', '*', '>', '<')
+    # for char in special_character:
+    #     if char in data["name"]:
+    #         return "no special characters allowed "
+    #     data = request.get_json()
+    #     else:
+    #         if char in data["username"]:
+    #             return "no special character allowed"
+    #         data = request.get_json()
+
+
+        
     # this is where the data will be stored
     User.user_info[new_user.username] = {
         "name": new_user.name,

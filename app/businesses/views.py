@@ -1,5 +1,5 @@
 from flask import jsonify, request, make_response
-from app.models import User, Business, business_info, get_business_catalogue
+from app.models import User, Business, business_info, get_business_catalog
 from app import app
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
@@ -19,6 +19,7 @@ def create_business():
      )
 #this adds the created business to a list of all businesses
     new_business.save()
+    # print(business_info)
     
     business_info[new_business.business_ID] = {
         "business_ID": new_business.business_ID,
@@ -36,11 +37,11 @@ def create_business():
 
 @app.route('/api/v1/business', methods=['GET'])
 @jwt_required
-def get_a_businesses():
+def get_businesses():
     '''user can get a business'''
     #get business catalogue is a method in models
-    catalogue = get_business_catalogue() 
-    response ={"catalogue":catalogue}
+    catalog = get_business_catalog() 
+    response ={"catalog":catalog}
     return make_response(jsonify(response), 200)
 
 
@@ -52,11 +53,6 @@ def remove_business(business_ID):
     response = "message", "successfully delete business"
     return make_response(jsonify(response),200)
 
-    # if User.user_info:  # '''this ensures the user_info is not empty'''
-    #     for user in User.user_info:
-    #         User.user_info[user]['business'].append(
-    #             business_info[new_business.business_ID])
-
 
 @app.route('/api/v1/business/<int:business_ID>', methods=['GET'])
 def get_business():
@@ -67,11 +63,28 @@ def get_business():
 
 
 @app.route('/api/v1/business/<int:business_ID>',methods=['PUT'])
-def update_business():
+@jwt_required
+def update_business(business_ID):
     '''user can update their business information'''
+    current_user = get_jwt_identity()
 
+    new_business_details = request.get_json()
+    if business_ID in business_info:
+        current_details = business_info[business_ID]
+        if current_details["owner"] == current_user:
+            current_details["name"] = new_business_details["name"]
+            current_details["location"] = new_business_details["location"]
+            current_details["category"] = new_business_details["category"]
+            response = {"message": "Updated successfuly", "business_details": business_info[business_ID]}
+        else:
+            response = {"message": "You can only update your own business details."}
+    else:
+        response = {"message": "Business doesn't exist"}
 
-    response = "message", "successfully delete business"
     return make_response(jsonify(response), 200)
 
+    # if User.user_info:  # '''this ensures the user_info is not empty'''
+    #     for user in User.user_info:
+    #         User.user_info[user]['business'].append(
+    #             business_info[newi_business.business_ID])
 
