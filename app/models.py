@@ -1,5 +1,5 @@
 business_info = {} # users and their business infos found here
-catalogue =[] #a list of business names
+catalog =[] #a list of business names
 class User:
     '''user model'''
     user_info = {}  # where user data is stored
@@ -13,9 +13,15 @@ class User:
 
     # @staticmethod
 
-    def validate_auth_data(self, data):
+    # def validate_auth_data(self, data):
     #     '''a method that validates data from user '''
-        pass
+    # special_character = (" ", '$',' %' ,' & ', '*','>','<' )
+    # for char in data:
+    #     if char in special_character:
+
+    #         return "no special characters allowed." 
+            
+    #         pass
     # if data :
     #         username=data["username"]
     #         if username :
@@ -58,12 +64,16 @@ class Review:
 def delete(business_ID):
     del business_info[business_ID]
 
-# this is the method to create and returns catalogue .
-def get_business_catalogue():
+# this is the method to create and returns catalog .
+def get_business_catalog():
+    '''a user can get and view business catalog'''
     if business_info:
-        for item in business_info:
-            business = business_info[item]
-            catalogue.append(business)
-            return catalogue
+        for key in business_info:
+            catalog.append(dict(
+                name=business_info[key]["business_name"],#getting the value of keys from business info
+                category=business_info[key]["business_category"],
+                location=business_info[key]["business_location"]
+            ))
+        return catalog
     else:
         return "no items"

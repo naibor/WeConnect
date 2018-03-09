@@ -2,7 +2,7 @@ import json
 from unittest import TestCase
 from instance.config import app_config
 from app import app
-from app.models import User, Business, business_info, catalogue
+from app.models import User, Business, business_info, catalog
 # we create a tests class that inherits from testcase,the one imported up there
 class RegistrationTestCase(TestCase):
 
