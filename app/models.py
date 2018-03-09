@@ -13,9 +13,15 @@ class User:
 
     # @staticmethod
 
-    def validate_auth_data(self, data):
+    # def validate_auth_data(self, data):
     #     '''a method that validates data from user '''
-        pass
+    # special_character = (" ", '$',' %' ,' & ', '*','>','<' )
+    # for char in data:
+    #     if char in special_character:
+
+    #         return "no special characters allowed." 
+            
+    #         pass
     # if data :
     #         username=data["username"]
     #         if username :
@@ -60,10 +66,14 @@ def delete(business_ID):
 
 # this is the method to create and returns catalogue .
 def get_business_catalogue():
+    '''a user can get and view business catalogue'''
     if business_info:
-        for item in business_info:
-            business = business_info[item]
-            catalogue.append(business)
-            return catalogue
+        for key in business_info:
+            catalogue.append(dict(
+                name=business_info[key]["business_name"],#getting the value of keys from business info
+                category=business_info[key]["business_category"],
+                location=business_info[key]["business_location"]
+            ))
+        return catalogue
     else:
         return "no items"
