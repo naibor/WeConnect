@@ -20,10 +20,17 @@ def register():
         data["email"],
         data["password"]
         )
+    
 
     if new_user.name in user_info:
         response = {"message":"user already exist"}
         return make_response(jsonify(response),409) #user conflict
+
+#validate user's name
+    invalid_name = new_user.validate_name()
+    if invalid_name:
+        print(invalid_name)
+        return make_response(jsonify({"message": invalid_name}), 400)
 
     #validate username
     invalid_username = new_user.validate_username()

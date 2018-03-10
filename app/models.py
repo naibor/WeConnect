@@ -12,6 +12,15 @@ class User:
         self.password = password
         self.business=[]
 
+    def validate_name(self):
+        '''validates user's name'''
+        if len(self.name) >= 2:
+            # compiles the character combinations from start check alphanumeric then end
+            name_re = re.compile(r"^\w+$")
+            result_name = re.fullmatch(name_re, self.name)
+            if not result_name:
+                return "incorrect username,no special character or spaces allowed"
+
 
     def validate_username(self):
         '''validates username'''
