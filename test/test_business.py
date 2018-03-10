@@ -1,8 +1,11 @@
 import json
 from unittest import TestCase
+
 from instance.config import app_config
+
 from app import app
 from app.models import User, user_info, Business, business_info,catalog
+
 from test.helpers import signup, login
 
 
