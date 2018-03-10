@@ -1,7 +1,12 @@
 from flask import jsonify, request, make_response
-from app.models import User, Business 
+from app.models import User, user_info, Business
+
 from app import app
+
 from  flask_jwt_extended import create_access_token
+
+from validate_email import validate_email
+import re 
 
 @app.route('/api/v1/auth/register', methods=['POST'])
 def register():
@@ -15,29 +20,39 @@ def register():
         data["email"],
         data["password"]
         )
-    # special_character = (" ", '$', ' %', ' & ', '*', '>', '<')
-    # for char in special_character:
-    #     if char in data["name"]:
-    #         return "no special characters allowed "
-    #     data = request.get_json()
-    #     else:
-    #         if char in data["username"]:
-    #             return "no special character allowed"
-    #         data = request.get_json()
-
-
-        
-    # this is where the data will be stored
-    User.user_info[new_user.username] = {
-        "name": new_user.name,
-        "username": new_user.username,
-        "email":new_user.email,
-        "password":new_user.password,
-        "business": new_user.business # attach attribute business to user_info
-    }
-    response = {"message":"welcome you are now registered"}
     
 
+    if new_user.name in user_info:
+        response = {"message":"user already exist"}
+        return make_response(jsonify(response),409) #user conflict
+
+#validate user's name
+    invalid_name = new_user.validate_name()
+    if invalid_name:
+        print(invalid_name)
+        return make_response(jsonify({"message": invalid_name}), 400)
+
+    #validate username
+    invalid_username = new_user.validate_username()
+    if invalid_username:
+        print(invalid_username)
+        return make_response(jsonify({"message": invalid_username}), 400)
+
+    #validate email
+    invalid_email = new_user.validate_email()
+    if invalid_email:
+        print(invalid_email)
+        return make_response(jsonify({"message": invalid_email}),400)
+
+    #validate password
+    invalid_password = new_user.validate_password()
+    if invalid_password:
+        print(invalid_password)
+        return make_response(jsonify({"message": invalid_password}),400)
+
+   #this stores the user information in user info
+    new_user.save_user()
+    response = {"message":"welcome you are now registered"}
     return make_response(jsonify(response), 201) #created
 
 @app.route('/api/v1/auth/login', methods=['POST'])
@@ -45,15 +60,15 @@ def signing_in():
     '''signing in'''
     data = request.get_json()
     if  not request.is_json:
-        return jsonify({"msg": "JSON not in request,data validation failed"}), 400 #bad request
-    if User.user_info:
+        return jsonify({"msg": "JSON not in request,data validation failed"},400)  #bad request
+    if user_info:
         this_username = data['username']
     # print(thisusername)
         # if the user name is saved in the info proceed to get username
-        if this_username in User.user_info:
+        if this_username in user_info:
                 # print(thisusername)
             # then assign a variable to the accessed username for the particular user in the user_info
-                user = User.user_info[this_username]
+                user = user_info[this_username]
                 # print(user)
             # compare the passwords 
                 if user["password"] == data["password"]:
