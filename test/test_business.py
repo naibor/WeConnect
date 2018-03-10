@@ -51,6 +51,7 @@ class BusinessTestCase(TestCase):
     def test_remove_business(self):
         '''a user can remove a business'''
         reg_response = self.register_business
+        
         self.assertEqual(reg_response.status_code, 201)
         response = self.test_app.delete(
             "/api/v1/business/1",
@@ -58,6 +59,8 @@ class BusinessTestCase(TestCase):
             content_type="application/json"
             )
         self.assertEqual(response.status_code, 200)
+        
+        self.assertNotIn("business_name", catalog, msg="deleted from catalog")
         self.assertNotIn("business_ID", business_info, msg="successfully deleted business")
 
         

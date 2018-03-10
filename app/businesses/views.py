@@ -2,6 +2,7 @@ from flask import jsonify, request, make_response
 from app.models import User, Business, business_info, get_business_catalog
 from app import app
 from flask_jwt_extended import jwt_required, get_jwt_identity
+import re
 
 @app.route('/api/v1/business', methods=['POST'])
 @jwt_required
@@ -17,6 +18,7 @@ def create_business():
         data["business_category"],
         current_user
      )
+    new_business.validate_business_name()
 #this adds the created business to a list of all businesses
     new_business.save()
     # print(business_info)
@@ -49,7 +51,14 @@ def get_businesses():
 @jwt_required
 def remove_business(business_ID):
     '''user can delete a business'''
-    business_info.pop(business_ID)
+    catalog = get_business_catalog()
+    print (catalog)
+    business = business_info.pop(business_ID)
+    business_name = business["name"]
+    print (business_info)
+    for item in catalog:
+        if item["name"] == business_name:
+            catalog.remove(item)
     response = "message", "successfully delete business"
     return make_response(jsonify(response),200)
 
