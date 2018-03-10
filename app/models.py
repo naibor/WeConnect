@@ -1,4 +1,5 @@
 import re
+
 business_info = {} # users and their business infos found here
 catalog =[] #a list of business names
 user_info = {}  # where user data is stored
@@ -34,7 +35,7 @@ class User:
         '''validates password'''
         if self.password:
             # from start check alphanumeric then end
-            psw_re = re.compile(r"^\W+$")
+            psw_re = re.compile(r"^\S+$")
             result_password = re.fullmatch(psw_re, self.password)
             if not result_password:
                 return "incorrect password,no spaces allowed"
@@ -45,7 +46,8 @@ class User:
         if self.email:
             email_re=re.compile(r"^[\w.+]+@\w+\.\+w+$")#accounts for \w words and . ,@ and word ,more words then end
             result_email = re.fullmatch(email_re, self.email)
-            if not result_email:
+            if result_email:
+                # print (result_email)
                 return "incorrect email,try again"
         
     def save_user(self):
@@ -58,7 +60,7 @@ class User:
             "business": self.business
         }
 
-        user_info[self.name] = new_user
+        user_info[self.username] = new_user
         
 class Business:
     '''business model'''
@@ -111,7 +113,7 @@ def get_business_catalog():#not working as expected
                 category=business_info[item]["business_category"],
                 location=business_info[item]["business_location"]
             ))
-            print (catalog)
+            # print (catalog)
         return catalog
     else:
         return "no items"

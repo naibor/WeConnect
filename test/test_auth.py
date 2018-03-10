@@ -2,7 +2,7 @@ import json
 from unittest import TestCase
 from instance.config import app_config
 from app import app
-from app.models import User, Business, business_info, catalog
+from app.models import User, user_info, Business, business_info, catalog
 # we create a tests class that inherits from testcase,the one imported up there
 class RegistrationTestCase(TestCase):
 
@@ -25,7 +25,7 @@ class RegistrationTestCase(TestCase):
         '''ensures users are created on the register account'''
         response = self.register_response
         self.assertEqual(response.status_code,201)
-        self.assertIn("naibor", User.user_info, msg="user not found")
+        self.assertIn("naibor", user_info, msg="user not found")
         self.assertIn("welcome you are now registered", str(response.data)) 
 
     def test_signin(self):

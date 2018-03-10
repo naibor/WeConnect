@@ -1,6 +1,8 @@
-from flask import jsonify, request, make_response
+from flask import jsonify, request, make_response 
 from app.models import User, Business, business_info, get_business_catalog
+
 from app import app
+
 from flask_jwt_extended import jwt_required, get_jwt_identity
 import re
 
@@ -52,10 +54,10 @@ def get_businesses():
 def remove_business(business_ID):
     '''user can delete a business'''
     catalog = get_business_catalog()
-    print (catalog)
+    # print (catalog)
     business = business_info.pop(business_ID)
-    business_name = business["name"]
-    print (business_info)
+    business_name = business["business_name"]
+    print(business)
     for item in catalog:
         if item["name"] == business_name:
             catalog.remove(item)

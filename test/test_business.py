@@ -1,8 +1,11 @@
 import json
 from unittest import TestCase
+
 from instance.config import app_config
+
 from app import app
-from app.models import User, Business, business_info
+from app.models import User, user_info, Business, business_info,catalog
+
 from test.helpers import signup, login
 
 
@@ -40,7 +43,7 @@ class BusinessTestCase(TestCase):
             content_type="application/json"
         )
 
-        User.user_info.clear()
+        user_info.clear()
 
     def test_create_business(self):
         '''ensures registered user can register a business'''

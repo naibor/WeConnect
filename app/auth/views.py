@@ -5,7 +5,6 @@ from app import app
 
 from  flask_jwt_extended import create_access_token
 
-from validate_email import validate_email
 import re 
 
 @app.route('/api/v1/auth/register', methods=['POST'])
