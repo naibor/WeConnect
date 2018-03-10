@@ -1,4 +1,5 @@
 import re
+
 business_info = {} # users and their business infos found here
 catalog =[] #a list of business names
 user_info = {}  # where user data is stored

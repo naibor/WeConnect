@@ -1,6 +1,8 @@
-from flask import jsonify, request, make_response
+from flask import jsonify, request, make_response 
 from app.models import User, Business, business_info, get_business_catalog
+
 from app import app
+
 from flask_jwt_extended import jwt_required, get_jwt_identity
 import re
 
